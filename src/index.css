@@ -16,7 +16,7 @@
 :root {
   --bg-primary: #fff;
   --bg-secondary: #eee;
-  --color-primary: #311b92;
+  --color-primary: #7e57c2;
   --bg-hover: #311b9222;
   --bg-active: #7e57c2;
   --text-primary: #000;
@@ -102,4 +102,65 @@ a {
 .theme-btn img {
   width: 2.4rem;
   height: 2.4rem;
+}
+
+/* Hero section */
+.hero {
+  min-height: 40rem;
+  padding: 5rem;
+
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero p {
+  font-size: 1.6rem;
+}
+
+.search-box {
+  width: 65rem;
+  border: 3px solid var(--bg-secondary);
+  border-radius: 20rem;
+  align-self: center;
+  display: flex;
+  align-items: center;
+
+  transition: box-shadow 200ms, border 200ms;
+}
+
+.search-box:has(input:focus) {
+  border: 3px solid var(--color-primary);
+  box-shadow: -4px 8px 1rem 0px var(--color-primary);
+}
+
+.search-box input {
+  padding: 1rem 0 1rem 2rem;
+  font-size: 2.2rem;
+  background-color: transparent;
+  color: inherit;
+  outline: none;
+  border: none;
+  flex-grow: 1;
+}
+
+.search-box button {
+  margin-right: 2rem;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search-box svg {
+  color: var(--text-primary);
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }
