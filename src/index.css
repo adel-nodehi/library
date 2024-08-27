@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("./assets/fonts/Poppins-Regular.ttf") format("TrueType");
+}
+
 *,
 *::before,
 *::after {
@@ -6,6 +11,66 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-primary: #fff;
+  --bg-secondary: #eee;
+  --color-primary: #311b92;
+  --bg-hover: #311b9222;
+  --bg-active: #7e57c2;
+  --text-primary: #000;
+
+  --text-secondary: #fff;
+  --text-color-active: #fff;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #000;
+  --bg-secondary: #333;
+  --bg-hover: #7e57c299;
+  --bg-active: #7e57c2;
+  --text-primary: #fff;
+}
+
 html {
   font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header start */
+.header {
+  background-color: var(--bg-secondary);
+  padding: 1.5rem 1.5rem;
+}
+
+.nav ul {
+  list-style: none;
+  font-size: 1.8rem;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav a {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 200ms;
+}
+
+.nav a:hover {
+  /* color: var(--text-color-active); */
+  background-color: var(--bg-hover);
+}
+
+.active {
+  color: var(--text-color-active) !important;
+  background-color: var(--bg-active) !important;
 }
