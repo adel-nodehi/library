@@ -8,19 +8,19 @@ function Theme() {
   const [isDark, setIsDark] = useState(false);
 
   function handleThemeChange() {
-    setIsDark((cur) => !cur);
-
     if (isDark) {
       document.documentElement.removeAttribute("data-theme");
     } else {
       document.documentElement.setAttribute("data-theme", "dark");
     }
+
+    setIsDark((cur) => !cur);
   }
 
   return (
     <button onClick={handleThemeChange} className="theme-btn">
       <img src={isDark ? sun : moon} alt="theme icon" />
-      {isDark ? "Light Mode" : "Dark Mode"}
+      <p>{isDark ? "Light Mode" : "Dark Mode"}</p>
     </button>
   );
 }

@@ -9,6 +9,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  transition: color 20ms, background-color 200ms;
 }
 
 :root {
@@ -21,6 +23,8 @@
 
   --text-secondary: #fff;
   --text-color-active: #fff;
+
+  --theme-btn-hover: #7773;
 }
 
 [data-theme="dark"] {
@@ -50,6 +54,9 @@ a {
 .header {
   background-color: var(--bg-secondary);
   padding: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav ul {
@@ -60,9 +67,10 @@ a {
 }
 
 .nav a {
+  display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  transition: all 200ms;
+  transition: background-color 200ms;
 }
 
 .nav a:hover {
@@ -73,4 +81,25 @@ a {
 .active {
   color: var(--text-color-active) !important;
   background-color: var(--bg-active) !important;
+}
+
+.theme-btn {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.theme-btn:hover {
+  background-color: var(--theme-btn-hover);
+}
+
+.theme-btn img {
+  width: 2.4rem;
+  height: 2.4rem;
 }
