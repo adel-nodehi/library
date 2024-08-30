@@ -14,8 +14,8 @@
 }
 
 :root {
-  --bg-primary: #fff;
-  --bg-secondary: #eee;
+  --bg-primary: #eee;
+  --bg-secondary: #f8f9fa;
   --color-primary: #7e57c2;
   --bg-hover: #311b9222;
   --bg-active: #7e57c2;
@@ -178,6 +178,7 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .Books__item {
+  background-color: var(--bg-secondary);
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: var(--light-shadow);
@@ -206,4 +207,13 @@ input[type="search"]::-webkit-search-results-decoration {
 .Books__item-content span {
   font-weight: normal;
   opacity: 0.8;
+}
+
+.btn-save {
+  margin-top: 2rem;
+}
+
+.btn-save svg {
+  width: 2rem;
+  height: 2rem;
 }
