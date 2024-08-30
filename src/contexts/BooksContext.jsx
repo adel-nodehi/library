@@ -1,4 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { server } from "../helper/server";
+
+const dbServer = server("http://localhost:8000/savedBooks");
 
 const BooksContext = createContext();
 
@@ -7,7 +10,8 @@ function BooksProvider({ children }) {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const numFound = useRef(0);
-  console.log(books);
+  const [savedBooks, setSavedBooks] = useState([]);
+  console.log(savedBooks);
 
   function handleBookMark(id) {
     // toggle bookmark on book state
@@ -57,6 +61,15 @@ function BooksProvider({ children }) {
     }
 
     fetchBooks();
+  }, []);
+
+  useEffect(function () {
+    async function getSavedBooks() {
+      const data = await dbServer.getData();
+      setSavedBooks(data);
+    }
+
+    getSavedBooks();
   }, []);
 
   return (
