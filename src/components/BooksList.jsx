@@ -1,10 +1,13 @@
+import { useBooks } from "../contexts/BooksContext";
 import BookItem from "./BookItem";
 
 function BooksList() {
+  const { books, isLoading, numFound } = useBooks();
+
   return (
     <div className="books__container">
-      {Array.from({ length: 10 }, (_, i) => i).map((item) => (
-        <BookItem key={item} />
+      {books.map((book) => (
+        <BookItem key={book.id} book={book} />
       ))}
     </div>
   );

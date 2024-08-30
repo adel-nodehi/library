@@ -29,8 +29,8 @@ function BooksProvider({ children }) {
             return {
               id: book.key,
               title: book.title,
-              authors: book.author_name,
-              coverID: book.cover_i,
+              author: book.author_name,
+              coverId: book.cover_i,
               publishYear: book.first_publish_year,
             };
           })
@@ -38,11 +38,11 @@ function BooksProvider({ children }) {
       } catch (err) {
         console.error(err);
       } finally {
-        setIsLoading(true);
+        setIsLoading(false);
       }
     }
 
-    // fetchBooks();
+    fetchBooks();
   }, []);
 
   return (

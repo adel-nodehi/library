@@ -1,19 +1,29 @@
 import notAvailable from "../assets/images/not_available_image.jpg";
 import Button from "./Button";
 
-function BookItem() {
+function BookItem({ book }) {
+  console.log(book);
   const bookmarked = true;
+
+  if (!book.coverId) return;
 
   return (
     <div className="Books__item">
-      <img src={notAvailable} alt="" />
+      <img
+        src={
+          book.coverId
+            ? `https://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`
+            : notAvailable
+        }
+        alt={book.title}
+      />
       <div className="Books__item-content">
-        <h3>shah name</h3>
+        <h3>{book.title}</h3>
         <p>
-          author: <span>ferdosi</span>
+          author: <span>{book.author}</span>
         </p>
         <p>
-          published year: <span>1968</span>
+          published year: <span>{book.publishYear}</span>
         </p>
 
         <Button className="btn-save">
