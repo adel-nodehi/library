@@ -1,9 +1,9 @@
 import notAvailable from "../assets/images/not_available_image.jpg";
+import { useBooks } from "../contexts/BooksContext";
 import Button from "./Button";
 
 function BookItem({ book }) {
-  console.log(book);
-  const bookmarked = true;
+  const { onBookMark } = useBooks();
 
   if (!book.coverId) return;
 
@@ -26,8 +26,8 @@ function BookItem({ book }) {
           published year: <span>{book.publishYear}</span>
         </p>
 
-        <Button className="btn-save">
-          {bookmarked ? (
+        <Button className="btn-save" onClick={() => onBookMark(book.id)}>
+          {book.isBookMarked ? (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

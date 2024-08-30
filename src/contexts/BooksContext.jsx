@@ -9,6 +9,19 @@ function BooksProvider({ children }) {
   const numFound = useRef(0);
   console.log(books);
 
+  function handleBookMark(id) {
+    // toggle bookmark on book state
+    setBooks((cur) =>
+      cur.map((book) => {
+        if (book.id !== id) return book;
+        return {
+          ...book,
+          isBookMarked: !book.isBookMarked,
+        };
+      })
+    );
+  }
+
   useEffect(function () {
     async function fetchBooks() {
       try {
@@ -32,6 +45,7 @@ function BooksProvider({ children }) {
               author: book.author_name,
               coverId: book.cover_i,
               publishYear: book.first_publish_year,
+              isBookMarked: false,
             };
           })
         );
@@ -52,6 +66,7 @@ function BooksProvider({ children }) {
         isLoading,
         setQuery,
         numFound: numFound.current,
+        onBookMark: handleBookMark,
       }}
     >
       {children}
