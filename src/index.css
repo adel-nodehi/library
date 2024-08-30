@@ -24,7 +24,7 @@
   --text-secondary: #fff;
   --text-color-active: #fff;
 
-  --theme-btn-hover: #7773;
+  --btn-bgcolor-hover: #7773;
   --light-shadow: 0 0 1.4rem #0003;
   --text-tertiary: #fff;
 }
@@ -85,7 +85,7 @@ a {
   background-color: var(--bg-active) !important;
 }
 
-.theme-btn {
+.btn {
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -97,11 +97,11 @@ a {
   cursor: pointer;
 }
 
-.theme-btn:hover {
-  background-color: var(--theme-btn-hover);
+.btn:hover {
+  background-color: var(--btn-bgcolor-hover);
 }
 
-.theme-btn img {
+.btn img {
   width: 2.4rem;
   height: 2.4rem;
 }

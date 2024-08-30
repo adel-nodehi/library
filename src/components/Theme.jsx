@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "./Button";
 
 // Icons
 import sun from "../assets/images/sun.svg";
@@ -18,10 +19,10 @@ function Theme() {
   }
 
   return (
-    <button onClick={handleThemeChange} className="theme-btn">
+    <Button onClick={handleThemeChange} className="theme-btn">
       <img src={isDark ? sun : moon} alt="theme icon" />
       <p>{isDark ? "Light Mode" : "Dark Mode"}</p>
-    </button>
+    </Button>
   );
 }
 
