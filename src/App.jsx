@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SavedPage from "./pages/SavedPage";
-import { BooksProvider } from "./assets/contexts/BooksContext";
+import { BooksProvider } from "./contexts/BooksContext";
 
 function App() {
   return (
