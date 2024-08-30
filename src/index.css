@@ -25,6 +25,8 @@
   --text-color-active: #fff;
 
   --theme-btn-hover: #7773;
+  --light-shadow: 0 0 1.4rem #0003;
+  --text-tertiary: #fff;
 }
 
 [data-theme="dark"] {
@@ -106,7 +108,7 @@ a {
 
 /* Hero section */
 .hero {
-  min-height: 40rem;
+  min-height: 25rem;
   padding: 5rem;
 
   font-size: 1.8rem;
@@ -163,4 +165,45 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
+}
+
+/* List of books section */
+
+.books__container {
+  max-width: 80rem;
+  margin: 4rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.Books__item {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--light-shadow);
+}
+
+.Books__item img {
+  width: 100%;
+  height: 34rem;
+  object-fit: contain;
+}
+
+.Books__item-content {
+  padding: 2rem;
+}
+
+.Books__item-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.Books__item-content p {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.Books__item-content span {
+  font-weight: normal;
+  opacity: 0.8;
 }
