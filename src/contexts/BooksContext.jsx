@@ -11,13 +11,19 @@ function BooksProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const numFound = useRef(0);
   const [savedBooks, setSavedBooks] = useState([]);
-  console.log(savedBooks);
+  const savedBooksId = savedBooks.map((book) => book.id);
+  console.log(savedBooks, books);
 
   function handleBookMark(id) {
     // toggle bookmark on book state
-    setBooks((cur) =>
-      cur.map((book) => {
+    setBooks((curBooks) =>
+      curBooks.map((book) => {
         if (book.id !== id) return book;
+
+        book.isBookMarked
+          ? dbServer.deleteItem(book.id)
+          : dbServer.addData(book);
+
         return {
           ...book,
           isBookMarked: !book.isBookMarked,
@@ -26,6 +32,7 @@ function BooksProvider({ children }) {
     );
   }
 
+  // fetch books from api
   useEffect(function () {
     async function fetchBooks() {
       try {
@@ -43,13 +50,15 @@ function BooksProvider({ children }) {
 
         setBooks(() =>
           data.docs.map((book) => {
+            const id = book.key.replaceAll("/", ".");
+
             return {
-              id: book.key,
+              id,
               title: book.title,
               author: book.author_name,
               coverId: book.cover_i,
               publishYear: book.first_publish_year,
-              isBookMarked: false,
+              isBookMarked: savedBooksId.includes(id),
             };
           })
         );
@@ -63,6 +72,7 @@ function BooksProvider({ children }) {
     fetchBooks();
   }, []);
 
+  // fetch saved books from json-server
   useEffect(function () {
     async function getSavedBooks() {
       const data = await dbServer.getData();
