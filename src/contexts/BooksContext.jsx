@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { server } from "../helper/server";
 
 const dbServer = server("http://localhost:8000/savedBooks");
@@ -11,8 +18,11 @@ function BooksProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const numFound = useRef(0);
   const [savedBooks, setSavedBooks] = useState([]);
-  const savedBooksId = savedBooks.map((book) => book.id);
-  console.log(savedBooks, books);
+  const savedBooksId = useMemo(
+    () => savedBooks.map((book) => book.id),
+    [savedBooks]
+  );
+  console.log("component renders");
 
   function handleBookMark(id) {
     // toggle bookmark on book state
@@ -33,44 +43,47 @@ function BooksProvider({ children }) {
   }
 
   // fetch books from api
-  useEffect(function () {
-    async function fetchBooks() {
-      try {
-        setIsLoading(true);
+  useEffect(
+    function () {
+      async function fetchBooks() {
+        try {
+          setIsLoading(true);
 
-        const res = await fetch(
-          "https://openlibrary.org/search.json?title=the+lord+of+the+rings"
-        );
+          const res = await fetch(
+            "https://openlibrary.org/search.json?title=the+lord+of+the+rings"
+          );
 
-        if (!res.ok) throw new Error("fetch error");
+          if (!res.ok) throw new Error("fetch error");
 
-        const data = await res.json();
+          const data = await res.json();
 
-        numFound.current = data.numFound;
+          numFound.current = data.numFound;
 
-        setBooks(() =>
-          data.docs.map((book) => {
-            const id = book.key.replaceAll("/", ".");
+          setBooks(() =>
+            data.docs.map((book) => {
+              const id = book.key.replaceAll("/", ".");
 
-            return {
-              id,
-              title: book.title,
-              author: book.author_name,
-              coverId: book.cover_i,
-              publishYear: book.first_publish_year,
-              isBookMarked: savedBooksId.includes(id),
-            };
-          })
-        );
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setIsLoading(false);
+              return {
+                id,
+                title: book.title,
+                author: book.author_name,
+                coverId: book.cover_i,
+                publishYear: book.first_publish_year,
+                isBookMarked: savedBooksId.includes(id),
+              };
+            })
+          );
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setIsLoading(false);
+        }
       }
-    }
 
-    fetchBooks();
-  }, []);
+      fetchBooks();
+    },
+    [savedBooksId]
+  );
 
   // fetch saved books from json-server
   useEffect(function () {
