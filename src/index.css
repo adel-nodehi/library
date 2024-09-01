@@ -139,6 +139,7 @@ a {
 }
 
 .search-box input {
+  width: 100%;
   padding: 1rem 0 1rem 2rem;
   font-size: 2.2rem;
   background-color: transparent;
@@ -272,5 +273,9 @@ input[type="search"]::-webkit-search-results-decoration {
     padding: 0 2rem;
     max-width: 40rem;
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .search-box {
+    width: 100%;
   }
 }
