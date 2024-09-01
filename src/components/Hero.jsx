@@ -11,6 +11,12 @@ function Hero() {
     onSearch(searchQuery);
   }
 
+  function handleChange(e) {
+    if (e.target.value === "") onSearch("the lord of the rings");
+
+    setSearchQuery(e.target.value);
+  }
+
   return (
     <div className="hero">
       <h1>Main Title</h1>
@@ -21,7 +27,7 @@ function Hero() {
       <form className="search-box" autoComplete="off" onSubmit={handleSubmit}>
         <input
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={handleChange}
           type="search"
           id="search"
           placeholder="Search"

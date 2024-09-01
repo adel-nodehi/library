@@ -57,6 +57,8 @@ function BooksProvider({ children }) {
   }
 
   function handleSearch(searchQuery) {
+    if (searchQuery === query) return;
+
     ableToFetch.current = true;
 
     const apiSearchQuery = searchQuery.split(" ").join("+");
