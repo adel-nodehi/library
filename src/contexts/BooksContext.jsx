@@ -7,6 +7,7 @@ import {
   useState,
 } from "react";
 import { server } from "../helper/server";
+import { isArraysEqual } from "../helper/isArraysEqual";
 
 const dbServer = server("http://localhost:8000/savedBooks");
 
@@ -30,14 +31,16 @@ function BooksProvider({ children }) {
       curBooks.map((book) => {
         if (book.id !== id) return book;
 
-        book.isBookMarked
-          ? dbServer.deleteItem(book.id)
-          : dbServer.addData(book);
-
-        return {
+        const newBook = {
           ...book,
           isBookMarked: !book.isBookMarked,
         };
+
+        newBook.isBookMarked
+          ? dbServer.addData(newBook)
+          : dbServer.deleteItem(book.id);
+
+        return newBook;
       })
     );
   }
@@ -98,14 +101,20 @@ function BooksProvider({ children }) {
   );
 
   // fetch saved books from json-server
-  useEffect(function () {
-    async function getSavedBooks() {
-      const data = await dbServer.getData();
-      setSavedBooks(data);
-    }
+  useEffect(
+    function () {
+      async function getSavedBooks() {
+        const data = await dbServer.getData();
 
-    getSavedBooks();
-  }, []);
+        if (isArraysEqual(data, savedBooks)) return;
+
+        setSavedBooks(data);
+      }
+
+      getSavedBooks();
+    },
+    [books, savedBooks]
+  );
 
   return (
     <BooksContext.Provider
@@ -115,6 +124,7 @@ function BooksProvider({ children }) {
         setQuery,
         numFound: numFound.current,
         onBookMark: handleBookMark,
+        savedBooks,
       }}
     >
       {children}
