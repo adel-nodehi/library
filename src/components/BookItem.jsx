@@ -8,7 +8,7 @@ function BookItem({ book }) {
   if (!book.coverId) return;
 
   return (
-    <div className="Books__item">
+    <div className={`Books__item ${book.isBookMarked ? "saved__book" : ""}`}>
       <img
         src={
           book.coverId

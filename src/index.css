@@ -205,12 +205,13 @@ input[type="search"]::-webkit-search-results-decoration {
   padding: 1rem 1rem 0;
   background-color: var(--bg-secondary);
   border-radius: 1rem;
-  overflow: hidden;
   box-shadow: var(--light-shadow);
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  transition: box-shadow 400ms;
 }
 
 .Books__item img {
@@ -245,6 +246,26 @@ input[type="search"]::-webkit-search-results-decoration {
 .btn-save svg {
   width: 2rem;
   height: 2rem;
+}
+
+.saved__book {
+  box-shadow: 0 0 1rem 5px var(--color-primary);
+}
+
+.saved__book::before {
+  /* content: "Saved"; */
+  /* 
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 22rem;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  box-shadow: 0 0 0.8rem 0.5rem var(--color-primary);
+  border: 2px solid #fff;
+  position: absolute;
+  top: -14px;
+  right: -8px; */
 }
 
 /* Loader start */
