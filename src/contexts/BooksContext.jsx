@@ -14,7 +14,7 @@ const dbServer = server("http://localhost:8000/savedBooks");
 const BooksContext = createContext();
 
 function BooksProvider({ children }) {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("the+lord+of+the+rings");
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const numFound = useRef(0);
@@ -23,9 +23,11 @@ function BooksProvider({ children }) {
     () => savedBooks.map((book) => book.id),
     [savedBooks]
   );
-  console.log("component renders");
+  const ableToFetch = useRef(true);
 
   function handleBookMark(id) {
+    ableToFetch.current = false;
+
     // toggle bookmark on book state
     setBooks((curBooks) =>
       curBooks.map((book) => {
@@ -36,28 +38,48 @@ function BooksProvider({ children }) {
           isBookMarked: !book.isBookMarked,
         };
 
-        newBook.isBookMarked
-          ? dbServer.addData(newBook)
-          : dbServer.deleteItem(book.id);
+        if (newBook.isBookMarked) {
+          dbServer.addData(newBook);
+
+          setSavedBooks((curBooks) => [...curBooks, newBook]);
+        }
+        if (!newBook.isBookMarked) {
+          dbServer.deleteItem(book.id);
+
+          setSavedBooks((curBooks) =>
+            curBooks.filter((book) => book.id !== newBook.id)
+          );
+        }
 
         return newBook;
       })
     );
   }
 
+  function handleSearch(searchQuery) {
+    ableToFetch.current = true;
+
+    const apiSearchQuery = searchQuery.split(" ").join("+");
+
+    if (apiSearchQuery === query) return;
+
+    setQuery(apiSearchQuery);
+  }
+
   // fetch books from api
   useEffect(
     function () {
       const controller = new AbortController();
-      const signal = controller.signal;
+
+      if (!ableToFetch.current) return;
 
       async function fetchBooks() {
         try {
           setIsLoading(true);
 
           const res = await fetch(
-            "https://openlibrary.org/search.json?title=the+lord+of+the+rings",
-            { signal }
+            `https://openlibrary.org/search.json?title=${query}`,
+            { signal: controller.signal }
           );
 
           if (!res.ok) throw new Error("fetch error");
@@ -66,20 +88,20 @@ function BooksProvider({ children }) {
 
           numFound.current = data.numFound;
 
-          setBooks(() =>
-            data.docs.map((book) => {
-              const id = book.key.replaceAll("/", ".");
+          const newBooks = data.docs.map((book) => {
+            const id = book.key.replaceAll("/", ".");
 
-              return {
-                id,
-                title: book.title,
-                author: book.author_name,
-                coverId: book.cover_i,
-                publishYear: book.first_publish_year,
-                isBookMarked: savedBooksId.includes(id),
-              };
-            })
-          );
+            return {
+              id,
+              title: book.title,
+              author: book.author_name,
+              coverId: book.cover_i,
+              publishYear: book.first_publish_year,
+              isBookMarked: savedBooksId.includes(id),
+            };
+          });
+
+          setBooks(newBooks);
         } catch (err) {
           if (err.name === "AbortError") {
             console.log("Request aborted");
@@ -97,31 +119,28 @@ function BooksProvider({ children }) {
         controller.abort();
       };
     },
-    [savedBooksId]
+    [savedBooksId, query, ableToFetch]
   );
 
   // fetch saved books from json-server
-  useEffect(
-    function () {
-      async function getSavedBooks() {
-        const data = await dbServer.getData();
+  useEffect(function () {
+    async function getSavedBooks() {
+      const data = await dbServer.getData();
 
-        if (isArraysEqual(data, savedBooks)) return;
+      // if (isArraysEqual(data, savedBooks)) return;
 
-        setSavedBooks(data);
-      }
+      setSavedBooks(data);
+    }
 
-      getSavedBooks();
-    },
-    [books, savedBooks]
-  );
+    getSavedBooks();
+  }, []);
 
   return (
     <BooksContext.Provider
       value={{
         books,
         isLoading,
-        setQuery,
+        onSearch: handleSearch,
         numFound: numFound.current,
         onBookMark: handleBookMark,
         savedBooks,

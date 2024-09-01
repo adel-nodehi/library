@@ -1,4 +1,16 @@
+import { useState } from "react";
+import { useBooks } from "../contexts/BooksContext";
+
 function Hero() {
+  const { onSearch } = useBooks();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onSearch(searchQuery);
+  }
+
   return (
     <div className="hero">
       <h1>Main Title</h1>
@@ -6,8 +18,15 @@ function Hero() {
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, porro.
       </p>
 
-      <form className="search-box" autoComplete="off">
-        <input type="search" id="search" placeholder="Search" required />
+      <form className="search-box" autoComplete="off" onSubmit={handleSubmit}>
+        <input
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          type="search"
+          id="search"
+          placeholder="Search"
+          required
+        />
         <button type="submit">
           <svg
             xmlns="http://www.w3.org/2000/svg"
