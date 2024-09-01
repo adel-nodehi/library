@@ -92,19 +92,22 @@ a {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  cursor: pointer;
+}
+
+.btn-theme {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid var(--text-primary);
   color: var(--text-primary);
   background-color: transparent;
-  cursor: pointer;
 }
 
-.btn:hover {
+.btn-theme:hover {
   background-color: var(--btn-bgcolor-hover);
 }
 
-.btn img {
+.btn-theme img {
   width: 2.4rem;
   height: 2.4rem;
 }
@@ -242,31 +245,31 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .btn-save {
   margin-top: 2rem;
+  width: 100%;
+  background-color: var(--color-primary);
+  border: none;
+  justify-content: center;
+  padding: 0.8rem 1.2rem;
+  border-radius: 22rem;
+  color: #fff;
+  font-size: 1.5rem;
+
+  transition: filter 200ms;
+}
+
+.btn-save:hover {
+  filter: brightness(1.1);
 }
 
 .btn-save svg {
-  width: 2rem;
-  height: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  stroke-width: 2px;
+  color: #fff;
 }
 
 .saved__book {
   box-shadow: 0 0 1rem 5px var(--color-primary);
-}
-
-.saved__book::before {
-  /* content: "Saved"; */
-  /* 
-  background-color: var(--color-primary);
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 22rem;
-  font-size: 1.2rem;
-  letter-spacing: 1px;
-  box-shadow: 0 0 0.8rem 0.5rem var(--color-primary);
-  border: 2px solid #fff;
-  position: absolute;
-  top: -14px;
-  right: -8px; */
 }
 
 /* Loader start */

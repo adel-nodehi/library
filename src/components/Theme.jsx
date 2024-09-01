@@ -19,7 +19,7 @@ function Theme() {
   }
 
   return (
-    <Button onClick={handleThemeChange}>
+    <Button className="btn btn-theme" onClick={handleThemeChange}>
       <img src={isDark ? sun : moon} alt="theme icon" />
       <p>{isDark ? "Light Mode" : "Dark Mode"}</p>
     </Button>
