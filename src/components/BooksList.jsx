@@ -1,11 +1,14 @@
 import BookItem from "./BookItem";
+import Loading from "./Loading";
 
-function BooksList({ books, isLoading, numFound }) {
+function BooksList({ books, isLoading = false, numFound }) {
   return (
     <div className="books__container">
-      {books.map((book) => (
-        <BookItem key={book.id} book={book} />
-      ))}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        books.map((book) => <BookItem key={book.id} book={book} />)
+      )}
     </div>
   );
 }

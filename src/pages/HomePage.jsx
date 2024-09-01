@@ -5,6 +5,7 @@ import { useBooks } from "../contexts/BooksContext";
 
 function HomePage() {
   const { books, isLoading, numFound } = useBooks();
+  console.log(isLoading);
 
   return (
     <div>
