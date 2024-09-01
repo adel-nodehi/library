@@ -171,10 +171,10 @@ input[type="search"]::-webkit-search-results-decoration {
 /* List of books section */
 
 .books__container {
-  max-width: 80rem;
+  max-width: 120rem;
   margin: 4rem auto 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2.5rem;
 }
 
@@ -222,4 +222,27 @@ input[type="search"]::-webkit-search-results-decoration {
 .btn-save svg {
   width: 2rem;
   height: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .books__container {
+    padding: 0 2rem;
+    max-width: 99.2rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .books__container {
+    max-width: 70rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .books__container {
+    padding: 0 2rem;
+    max-width: 40rem;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
