@@ -19,7 +19,7 @@ function Hero() {
 
   return (
     <div className="hero">
-      <h1>Main Title</h1>
+      <h1>find your book of choice.</h1>
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit, porro.
       </p>

@@ -27,6 +27,8 @@
   --btn-bgcolor-hover: #7773;
   --light-shadow: 0 0 1.4rem #0003;
   --text-tertiary: #fff;
+
+  --hero-gradient: linear-gradient(#7e57c291, #7e57c291);
 }
 
 [data-theme="dark"] {
@@ -35,6 +37,7 @@
   --bg-hover: #7e57c299;
   --bg-active: #7e57c2;
   --text-primary: #fff;
+  --hero-gradient: linear-gradient(#38235e91, #38235e91);
 }
 
 html {
@@ -116,26 +119,44 @@ a {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  background-image: var(--hero-gradient), url(./hero.jpg);
+  color: var(--text-secondary);
+  box-shadow: 0 0.5rem 1rem var(--color-primary);
+}
+
+.hero h1 {
+  font-size: 4.2rem;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 .hero p {
   font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 2.5rem;
 }
 
 .search-box {
+  color: inherit;
   width: 65rem;
-  border: 3px solid var(--bg-secondary);
+  border: 3px solid #999;
   border-radius: 20rem;
   align-self: center;
   display: flex;
   align-items: center;
 
-  transition: box-shadow 200ms, border 200ms;
+  transition: box-shadow 200ms, border 200ms, backdrop-filter 200ms;
+  backdrop-filter: blur(2px);
+}
+
+.search-box input::placeholder {
+  color: inherit;
 }
 
 .search-box:has(input:focus) {
-  border: 3px solid var(--color-primary);
-  box-shadow: -4px 8px 1rem 0px var(--color-primary);
+  border: 3px solid #fff;
+  backdrop-filter: blur(6px);
 }
 
 .search-box input {
@@ -159,7 +180,8 @@ a {
 }
 
 .search-box svg {
-  color: var(--text-primary);
+  color: #fff;
+  stroke-width: 2px;
 }
 
 input[type="search"]::-webkit-search-decoration,
