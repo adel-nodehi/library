@@ -17,7 +17,7 @@ function BooksProvider({ children }) {
   const [query, setQuery] = useState("the+lord+of+the+rings");
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const numFound = useRef(0);
+  const numFound = books.reduce((acc, cur) => (cur.coverId ? acc + 1 : acc), 0);
   const [savedBooks, setSavedBooks] = useState([]);
   const savedBooksId = useMemo(
     () => savedBooks.map((book) => book.id),
@@ -88,15 +88,13 @@ function BooksProvider({ children }) {
 
           const data = await res.json();
 
-          numFound.current = data.numFound;
-
           const newBooks = data.docs.map((book) => {
             const id = book.key.replaceAll("/", ".");
 
             return {
               id,
               title: book.title,
-              author: book.author_name,
+              author: book.author_name ?? "unknown",
               coverId: book.cover_i,
               publishYear: book.first_publish_year,
               isBookMarked: savedBooksId.includes(id),
@@ -143,7 +141,7 @@ function BooksProvider({ children }) {
         books,
         isLoading,
         onSearch: handleSearch,
-        numFound: numFound.current,
+        numFound,
         onBookMark: handleBookMark,
         savedBooks,
       }}
