@@ -45,12 +45,16 @@ function BooksProvider({ children }) {
   // fetch books from api
   useEffect(
     function () {
+      const controller = new AbortController();
+      const signal = controller.signal;
+
       async function fetchBooks() {
         try {
           setIsLoading(true);
 
           const res = await fetch(
-            "https://openlibrary.org/search.json?title=the+lord+of+the+rings"
+            "https://openlibrary.org/search.json?title=the+lord+of+the+rings",
+            { signal }
           );
 
           if (!res.ok) throw new Error("fetch error");
@@ -74,13 +78,21 @@ function BooksProvider({ children }) {
             })
           );
         } catch (err) {
-          console.error(err);
+          if (err.name === "AbortError") {
+            console.log("Request aborted");
+          } else {
+            console.error(err);
+          }
         } finally {
           setIsLoading(false);
         }
       }
 
       fetchBooks();
+
+      return () => {
+        controller.abort();
+      };
     },
     [savedBooksId]
   );
