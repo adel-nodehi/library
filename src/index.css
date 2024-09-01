@@ -196,6 +196,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .books__container {
   max-width: 120rem;
   margin: 4rem auto 0;
+  padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2.5rem;
@@ -296,11 +297,23 @@ input[type="search"]::-webkit-search-results-decoration {
 
 /* Loader end */
 
+/* Saved page start */
+
+.saved__title {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 4rem 2rem 0;
+  font-size: 2.8rem;
+}
+
 @media screen and (max-width: 1200px) {
   .books__container {
-    padding: 0 2rem;
     max-width: 99.2rem;
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .saved__title {
+    max-width: 99.2rem;
   }
 }
 
@@ -309,16 +322,23 @@ input[type="search"]::-webkit-search-results-decoration {
     max-width: 70rem;
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .saved__title {
+    max-width: 70rem;
+  }
 }
 
 @media screen and (max-width: 700px) {
   .books__container {
-    padding: 0 2rem;
     max-width: 40rem;
     grid-template-columns: repeat(1, 1fr);
   }
 
   .search-box {
     width: 100%;
+  }
+
+  .saved__title {
+    max-width: 40rem;
   }
 }
