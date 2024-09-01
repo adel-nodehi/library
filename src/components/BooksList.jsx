@@ -1,9 +1,6 @@
-import { useBooks } from "../contexts/BooksContext";
 import BookItem from "./BookItem";
 
-function BooksList() {
-  const { books, isLoading, numFound } = useBooks();
-
+function BooksList({ books, isLoading, numFound }) {
   return (
     <div className="books__container">
       {books.map((book) => (
