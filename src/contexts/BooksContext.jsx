@@ -25,35 +25,41 @@ function BooksProvider({ children }) {
   );
   const ableToFetch = useRef(true);
 
-  function handleBookMark(id) {
+  function handleBookMark(book) {
     ableToFetch.current = false;
 
     // toggle bookmark on book state
     setBooks((curBooks) =>
-      curBooks.map((book) => {
-        if (book.id !== id) return book;
+      curBooks.map((curBook) => {
+        if (curBook.id !== book.id) return curBook;
 
         const newBook = {
-          ...book,
-          isBookMarked: !book.isBookMarked,
+          ...curBook,
+          isBookMarked: !curBook.isBookMarked,
         };
-
-        if (newBook.isBookMarked) {
-          dbServer.addData(newBook);
-
-          setSavedBooks((curBooks) => [...curBooks, newBook]);
-        }
-        if (!newBook.isBookMarked) {
-          dbServer.deleteItem(book.id);
-
-          setSavedBooks((curBooks) =>
-            curBooks.filter((book) => book.id !== newBook.id)
-          );
-        }
 
         return newBook;
       })
     );
+
+    if (book.isBookMarked) {
+      // Delete from json file
+      dbServer.deleteItem(book.id);
+
+      // Delete from saved books
+      setSavedBooks((curBooks) =>
+        curBooks.filter((curBook) => curBook.id !== book.id)
+      );
+    }
+    if (!book.isBookMarked) {
+      const newBook = { ...book, isBookMarked: true };
+
+      // Add to json file
+      dbServer.addData(newBook);
+
+      // Add to json saved books
+      setSavedBooks((curBooks) => [...curBooks, newBook]);
+    }
   }
 
   function handleSearch(searchQuery) {

@@ -26,7 +26,7 @@ function BookItem({ book }) {
           published year: <span>{book.publishYear}</span>
         </p>
 
-        <Button className="btn btn-save" onClick={() => onBookMark(book.id)}>
+        <Button className="btn btn-save" onClick={() => onBookMark(book)}>
           {book.isBookMarked ? (
             <>
               <svg
