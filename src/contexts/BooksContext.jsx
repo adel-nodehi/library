@@ -151,6 +151,7 @@ function BooksProvider({ children }) {
         numFound,
         onBookMark: handleBookMark,
         savedBooks,
+        query,
       }}
     >
       {children}
