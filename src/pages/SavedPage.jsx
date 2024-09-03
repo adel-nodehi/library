@@ -6,14 +6,18 @@ import { useBooks } from "../contexts/BooksContext";
 
 function SavedPage() {
   const { savedBooks } = useBooks();
-  console.log(savedBooks);
+
   return (
     <main className="main">
       <Header />
 
       <Title className="saved__title">Saved books:</Title>
 
-      <BooksList books={savedBooks} />
+      <BooksList
+        books={savedBooks}
+        numFound={savedBooks.length}
+        fallbackMessage="You have not saved a book yet."
+      />
 
       <Footer />
     </main>

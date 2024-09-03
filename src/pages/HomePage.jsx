@@ -5,14 +5,20 @@ import { useBooks } from "../contexts/BooksContext";
 import Footer from "../components/Footer";
 
 function HomePage() {
-  const { books, isLoading, numFound } = useBooks();
+  const { books, isLoading, numFound, query } = useBooks();
   console.log(isLoading);
 
   return (
     <main className="main">
       <Header />
       <Hero />
-      <BooksList books={books} isLoading={isLoading} numFound={numFound} />
+      <BooksList
+        books={books}
+        isLoading={isLoading}
+        numFound={numFound}
+        fallbackMessage={`No search result for (${query.split("+").join(" ")})`}
+        query={query}
+      />
       <Footer />
     </main>
   );
