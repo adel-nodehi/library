@@ -9,12 +9,12 @@ function HomePage() {
   console.log(isLoading);
 
   return (
-    <div>
+    <main className="main">
       <Header />
       <Hero />
       <BooksList books={books} isLoading={isLoading} numFound={numFound} />
       <Footer />
-    </div>
+    </main>
   );
 }
 

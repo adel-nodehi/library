@@ -8,7 +8,7 @@ function SavedPage() {
   const { savedBooks } = useBooks();
   console.log(savedBooks);
   return (
-    <div>
+    <main className="main">
       <Header />
 
       <Title className="saved__title">Saved books:</Title>
@@ -16,7 +16,7 @@ function SavedPage() {
       <BooksList books={savedBooks} />
 
       <Footer />
-    </div>
+    </main>
   );
 }
 
