@@ -12,7 +12,7 @@ function Hero() {
   }
 
   function handleChange(e) {
-    if (e.target.value === "") onSearch("the lord of the rings");
+    if (e.target.value === "") onSearch("");
 
     setSearchQuery(e.target.value);
   }

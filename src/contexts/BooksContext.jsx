@@ -14,7 +14,7 @@ const dbServer = server("http://localhost:8000/savedBooks");
 const BooksContext = createContext();
 
 function BooksProvider({ children }) {
-  const [query, setQuery] = useState("the+lord+of+the+rings");
+  const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const numFound = books.reduce((acc, cur) => (cur.coverId ? acc + 1 : acc), 0);
@@ -82,11 +82,12 @@ function BooksProvider({ children }) {
       if (!ableToFetch.current) return;
 
       async function fetchBooks() {
+        const finalQuery = query ? query : "the+lord+of+the+rings";
         try {
           setIsLoading(true);
 
           const res = await fetch(
-            `https://openlibrary.org/search.json?title=${query}`,
+            `https://openlibrary.org/search.json?title=${finalQuery}`,
             { signal: controller.signal }
           );
 
