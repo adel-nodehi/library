@@ -290,12 +290,8 @@ input[type="search"]::-webkit-search-results-decoration {
 
 /* Loader start */
 
-.books__container:has(> .loader) {
-  display: flex;
-  justify-content: center;
-}
-
 .loader {
+  align-self: center;
   width: 8rem;
   margin-top: 2rem;
   aspect-ratio: 2;
@@ -305,6 +301,7 @@ input[type="search"]::-webkit-search-results-decoration {
   background-size: calc(100% / 3) 50%;
   animation: l3 1s infinite linear;
 }
+
 @keyframes l3 {
   20% {
     background-position: 0% 0%, 50% 50%, 100% 50%;
