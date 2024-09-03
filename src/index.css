@@ -349,6 +349,16 @@ input[type="search"]::-webkit-search-results-decoration {
 
 /* Footer end */
 
+/* Message start */
+
+.message {
+  align-self: center;
+  margin-top: 3rem;
+  font-size: 1.8rem;
+}
+
+/* Message end */
+
 @media screen and (max-width: 1200px) {
   .books__container {
     max-width: 99.2rem;
