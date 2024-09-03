@@ -7,7 +7,6 @@ import {
   useState,
 } from "react";
 import { server } from "../helper/server";
-import { isArraysEqual } from "../helper/isArraysEqual";
 
 const dbServer = server("http://localhost:8000/savedBooks");
 
