@@ -5,7 +5,7 @@ function server(url) {
       const data = await res.json();
       return data;
     } catch (err) {
-      alert(`Sometjing is wrong with server \n ${err.message}`);
+      alert(`Something is wrong with server \n ${err.message}`);
     }
   }
 
@@ -19,7 +19,7 @@ function server(url) {
         body: JSON.stringify(data),
       });
     } catch (err) {
-      alert(`Sometjing is wrong with server \n ${err.message}`);
+      alert(`Something is wrong with server \n ${err.message}`);
     }
   }
 
@@ -33,7 +33,7 @@ function server(url) {
         body: JSON.stringify(data),
       });
     } catch (err) {
-      alert(`Sometjing is wrong with server \n ${err.message}`);
+      alert(`Something is wrong with server \n ${err.message}`);
     }
   }
 
@@ -43,7 +43,7 @@ function server(url) {
         method: "DELETE",
       });
     } catch (err) {
-      alert(`Sometjing is wrong with server \n ${err.message}`);
+      alert(`Something is wrong with server \n ${err.message}`);
     }
   }
 
