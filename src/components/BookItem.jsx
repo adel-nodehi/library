@@ -1,4 +1,3 @@
-import notAvailable from "../assets/images/not_available_image.jpg";
 import { useBooks } from "../contexts/BooksContext";
 import Button from "./Button";
 
@@ -10,11 +9,7 @@ function BookItem({ book }) {
   return (
     <div className={`Books__item ${book.isBookMarked ? "saved__book" : ""}`}>
       <img
-        src={
-          book.coverId
-            ? `https://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`
-            : notAvailable
-        }
+        src={`https://covers.openlibrary.org/b/id/${book.coverId}-M.jpg`}
         alt={book.title}
       />
       <div className="Books__item-content">
