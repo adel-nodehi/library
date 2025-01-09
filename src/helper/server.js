@@ -11,13 +11,17 @@ function server(url) {
 
   async function addData(data) {
     try {
-      await fetch(url, {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
+
+      const responseData = await response.json();
+
+      return responseData;
     } catch (err) {
       alert(`Something is wrong with server \n ${err.message}`);
     }
