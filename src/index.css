@@ -24,7 +24,7 @@
   --text-secondary: #fff;
   --text-color-active: #fff;
 
-  --btn-bgcolor-hover: #7773;
+  --btn-bg-color-hover: #7773;
   --light-shadow: 0 0 1.4rem #0003;
   --text-tertiary: #fff;
 
@@ -37,6 +37,8 @@
   --bg-hover: #7e57c299;
   --bg-active: #7e57c2;
   --text-primary: #fff;
+
+  --light-shadow: 0 0 1.4rem #fff4;
   --hero-gradient: linear-gradient(#38235e91, #38235e91);
 }
 
@@ -115,7 +117,7 @@ a {
 }
 
 .btn-theme:hover {
-  background-color: var(--btn-bgcolor-hover);
+  background-color: var(--btn-bg-color-hover);
 }
 
 .btn-theme img {
@@ -358,6 +360,79 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 /* Message end */
+
+/* Login/Signup start */
+
+.sign-up {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up__form {
+  width: 35rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
+  box-shadow: var(--light-shadow);
+  background-color: var(--bg-secondary);
+}
+
+.sign-up__title {
+  text-align: center;
+  font-size: 4.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.sign-up__input-wrapper {
+  margin-bottom: 1rem;
+}
+
+.sign-up__label {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.sign-up__input {
+  width: 100%;
+  border: 3px solid var(--bg-active);
+  outline: none;
+  border-radius: 200rem;
+  padding: 1rem 1.5rem;
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  background: color-mix(in srgb, var(--bg-active), transparent 95%);
+  color: var(--text-primary);
+}
+
+.sign-up__input:focus {
+  background: color-mix(in srgb, var(--bg-active), transparent 80%);
+}
+
+.sign-up__submit-btn {
+  width: 100%;
+  color: var(--text-primary);
+  font-size: 2.2rem;
+  background-color: color-mix(in srgb, var(--bg-active), transparent 70%);
+  border: 3px solid var(--color-primary);
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  border-radius: 200rem;
+  margin-top: 1rem;
+}
+
+.sign-up__paragraph {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.sign-up__link {
+  color: #1976d2;
+  text-decoration: underline;
+}
+
+/* Login/Signup end */
 
 @media screen and (max-width: 1200px) {
   .books__container {
