@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": "2",
+      "name": "adel",
+      "password": "1243"
+    },
+    {
+      "id": "f1bc",
+      "username": "adels",
+      "password": "sssss"
+    },
+    {
+      "id": "f482",
+      "username": "adelsf",
+      "password": "1254"
+    },
+    {
+      "id": "0349",
+      "username": "sssss",
+      "password": "sssss"
+    }
+  ],
+  "savedBooks": [
+    {
+      "id": ".works.OL26979164W",
+      "title": "Adele - 30",
+      "author": [
+        "Adele"
+      ],
+      "coverId": 14687587,
+      "publishYear": 2021,
+      "isBookMarked": true
+    },
+    {
+      "id": ".works.OL20153010W",
+      "title": "Adèle",
+      "author": [
+        "Leïla Slimani"
+      ],
+      "coverId": 8797848,
+      "publishYear": 2019,
+      "isBookMarked": true
+    },
+    {
+      "id": ".works.OL27448W",
+      "title": "The Lord of the Rings",
+      "author": [
+        "J.R.R. Tolkien"
+      ],
+      "coverId": 14625765,
+      "publishYear": 1954,
+      "isBookMarked": true
+    }
+  ]
+}
