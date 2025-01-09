@@ -140,9 +140,6 @@ function BooksProvider({ children }) {
           (savedBook) => savedBook.userId === user?.id
         );
 
-        console.log(data);
-        console.log(userSavedBooks);
-
         setSavedBooks(userSavedBooks);
       }
 

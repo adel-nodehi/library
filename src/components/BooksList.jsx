@@ -6,7 +6,7 @@ function BooksList({
   books,
   isLoading = false,
   numFound = 0,
-  fallbackMessage = "nothig to show",
+  fallbackMessage = "nothing to show",
   query = "",
 }) {
   if (isLoading) return <Loading />;

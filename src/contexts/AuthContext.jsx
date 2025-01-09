@@ -17,8 +17,6 @@ export function AuthProvider({ children }) {
 
     const newUser = await authServer.addData({ name: username, password });
 
-    console.log(newUser);
-
     setUser(newUser);
   }
 
