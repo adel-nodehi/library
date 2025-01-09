@@ -8,7 +8,7 @@ import {
 } from "react";
 import { server } from "../helper/server";
 
-const dbServer = server("http://localhost:8000/savedBooks");
+const savedBooksServer = server("http://localhost:8000/savedBooks");
 
 const BooksContext = createContext();
 
@@ -43,7 +43,7 @@ function BooksProvider({ children }) {
 
     if (book.isBookMarked) {
       // Delete from json file
-      dbServer.deleteItem(book.id);
+      savedBooksServer.deleteItem(book.id);
 
       // Delete from saved books
       setSavedBooks((curBooks) =>
@@ -54,7 +54,7 @@ function BooksProvider({ children }) {
       const newBook = { ...book, isBookMarked: true };
 
       // Add to json file
-      dbServer.addData(newBook);
+      savedBooksServer.addData(newBook);
 
       // Add to json saved books
       setSavedBooks((curBooks) => [...curBooks, newBook]);
@@ -131,7 +131,7 @@ function BooksProvider({ children }) {
   // fetch saved books from json-server
   useEffect(function () {
     async function getSavedBooks() {
-      const data = await dbServer.getData();
+      const data = await savedBooksServer.getData();
 
       // if (isArraysEqual(data, savedBooks)) return;
 
