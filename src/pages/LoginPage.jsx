@@ -6,8 +6,8 @@ const LoginPage = () => {
   const { onLogin } = useAuth();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("sssss");
-  const [password, setUPassword] = useState("sssss");
+  const [username, setUsername] = useState("");
+  const [password, setUPassword] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,14 +16,14 @@ const LoginPage = () => {
 
     try {
       await onLogin(username, password);
+
+      setUsername("");
+      setUPassword("");
+
+      navigate("/");
     } catch (err) {
       alert(err);
     }
-
-    setUsername("");
-    setUPassword("");
-
-    navigate("/");
   }
 
   return (

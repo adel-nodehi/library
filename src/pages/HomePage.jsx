@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 
 function HomePage() {
   const { books, isLoading, numFound, query } = useBooks();
-  console.log(isLoading);
 
   return (
     <main className="main">

@@ -6,8 +6,8 @@ const authServer = server("http://localhost:8000/users");
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [loggedInUser, setLoggedInUser] = useState({});
-  const isLoggedIn = loggedInUser?.username;
+  const [user, setUser] = useState(null);
+  const isLoggedIn = user?.name;
 
   async function handleSignup(username, password) {
     const allUsers = await authServer.getData();
@@ -15,11 +15,11 @@ export function AuthProvider({ children }) {
     if (allUsers.find((user) => user.name === username))
       throw new Error("Username is Token");
 
-    const newUser = await authServer.addData({ username, password });
+    const newUser = await authServer.addData({ name: username, password });
 
     console.log(newUser);
 
-    setLoggedInUser(newUser);
+    setUser(newUser);
   }
 
   async function handleLogin(username, password) {
@@ -33,17 +33,17 @@ export function AuthProvider({ children }) {
     // if user enter wrong password
     if (matchUser.password !== password) throw new Error("Incorrect password");
 
-    setLoggedInUser(matchUser);
+    setUser(matchUser);
   }
 
   function handleLogout() {
-    setLoggedInUser({});
+    setUser(null);
   }
 
   return (
     <AuthContext.Provider
       value={{
-        loggedInUser,
+        user,
         isLoggedIn,
         onLogin: handleLogin,
         onSignup: handleSignup,

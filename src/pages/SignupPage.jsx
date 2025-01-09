@@ -6,8 +6,8 @@ const SignupPage = () => {
   const { onSignup } = useAuth();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("sssss");
-  const [password, setUPassword] = useState("sssss");
+  const [username, setUsername] = useState("");
+  const [password, setUPassword] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -16,15 +16,15 @@ const SignupPage = () => {
 
     try {
       await onSignup(username, password);
+
+      setUsername("");
+      setUPassword("");
+
+      navigate("/");
     } catch (err) {
       alert(err + ", Try another username");
       console.error(err);
     }
-
-    setUsername("");
-    setUPassword("");
-
-    navigate("/");
   }
 
   return (

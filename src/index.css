@@ -108,12 +108,19 @@ a {
   cursor: pointer;
 }
 
+.header__right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 .btn-theme {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid var(--text-primary);
   color: var(--text-primary);
   background-color: transparent;
+  margin-right: 1.5rem;
 }
 
 .btn-theme:hover {
@@ -123,6 +130,27 @@ a {
 .btn-theme img {
   width: 2.4rem;
   height: 2.4rem;
+}
+
+.header__username {
+  font-size: 1.6rem;
+}
+
+.btn__login {
+  background-color: var(--color-primary);
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1rem;
+  color: #fff;
+  font-size: 1.6rem;
+  transition: filter 200ms;
+  display: inline-block;
+  font-family: inherit;
+  /* font-weight: normal; */
+}
+
+.btn__login:hover {
+  filter: brightness(1.1);
 }
 
 /* Hero section */

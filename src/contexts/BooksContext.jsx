@@ -7,12 +7,15 @@ import {
   useState,
 } from "react";
 import { server } from "../helper/server";
+import { useAuth } from "./AuthContext";
 
 const savedBooksServer = server("http://localhost:8000/savedBooks");
 
 const BooksContext = createContext();
 
 function BooksProvider({ children }) {
+  const { user } = useAuth();
+
   const [query, setQuery] = useState("");
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +27,7 @@ function BooksProvider({ children }) {
   );
   const ableToFetch = useRef(true);
 
-  function handleBookMark(book) {
+  function handleBookMark(book, userId) {
     ableToFetch.current = false;
 
     // toggle bookmark on book state
@@ -51,7 +54,7 @@ function BooksProvider({ children }) {
       );
     }
     if (!book.isBookMarked) {
-      const newBook = { ...book, isBookMarked: true };
+      const newBook = { ...book, isBookMarked: true, userId };
 
       // Add to json file
       savedBooksServer.addData(newBook);
@@ -120,7 +123,6 @@ function BooksProvider({ children }) {
       }
 
       fetchBooks();
-
       return () => {
         controller.abort();
       };
@@ -129,17 +131,38 @@ function BooksProvider({ children }) {
   );
 
   // fetch saved books from json-server
-  useEffect(function () {
-    async function getSavedBooks() {
-      const data = await savedBooksServer.getData();
+  useEffect(
+    function () {
+      async function getSavedBooks() {
+        const data = await savedBooksServer.getData();
 
-      // if (isArraysEqual(data, savedBooks)) return;
+        const userSavedBooks = data.filter(
+          (savedBook) => savedBook.userId === user?.id
+        );
 
-      setSavedBooks(data);
-    }
+        console.log(data);
+        console.log(userSavedBooks);
 
-    getSavedBooks();
-  }, []);
+        setSavedBooks(userSavedBooks);
+      }
+
+      getSavedBooks();
+    },
+    [user?.id]
+  );
+
+  useEffect(() => {
+    setBooks((curBooks) =>
+      curBooks.map((curBook) => {
+        const newBook = {
+          ...curBook,
+          isBookMarked: savedBooksId.includes(curBook.id),
+        };
+
+        return newBook;
+      })
+    );
+  }, [savedBooksId]);
 
   return (
     <BooksContext.Provider
