@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Regular.ttf") format("TrueType");
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.ttf') format('TrueType');
 }
 
 *,
@@ -31,7 +31,7 @@
   --hero-gradient: linear-gradient(#7e57c291, #7e57c291);
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   --bg-primary: #000;
   --bg-secondary: #333;
   --bg-hover: #7e57c299;
@@ -47,7 +47,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--text-primary);
   background-color: var(--bg-primary);
 }
@@ -156,7 +156,8 @@ a {
 /* Hero section */
 
 .hero__container {
-  background-image: var(--hero-gradient), url(./hero.jpg);
+  background-image: var(--hero-gradient),
+    url('https://polygonhealthanalytics.com/content/images/2025/06/systematic_literature_review.jpeg');
   color: var(--text-secondary);
   box-shadow: 0 0.5rem 1rem var(--color-primary);
 }
@@ -232,10 +233,10 @@ a {
   stroke-width: 2px;
 }
 
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
   display: none;
 }
 
