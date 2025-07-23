@@ -1,57 +1,37 @@
 function server(url) {
   async function getData() {
     try {
-      const res = await fetch(url);
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      alert(`Something is wrong with server \n ${err.message}`);
+      return JSON.parse(localStorage.getItem(url)) || [];
+    } catch {
+      alert('fetch data failed');
     }
   }
 
   async function addData(data) {
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const responseData = await response.json();
-
-      return responseData;
-    } catch (err) {
-      alert(`Something is wrong with server \n ${err.message}`);
-    }
-  }
-
-  async function updateItem(id, data) {
-    try {
-      await fetch(`${url}/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-    } catch (err) {
-      alert(`Something is wrong with server \n ${err.message}`);
+      const storedData = await getData();
+      storedData.push(data);
+      localStorage.setItem(url, JSON.stringify(storedData));
+      return data;
+    } catch {
+      alert('add data failed');
     }
   }
 
   async function deleteItem(id) {
     try {
-      await fetch(`${url}/${id}`, {
-        method: "DELETE",
-      });
-    } catch (err) {
-      alert(`Something is wrong with server \n ${err.message}`);
+      const storedData = await getData();
+
+      localStorage.setItem(
+        url,
+        JSON.stringify(storedData.filter((data) => data.id !== id))
+      );
+    } catch {
+      alert('delete item failed');
     }
   }
 
-  return { getData, addData, updateItem, deleteItem };
+  return { getData, addData, deleteItem };
 }
 
 export { server };
