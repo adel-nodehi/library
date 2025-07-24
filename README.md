@@ -44,7 +44,7 @@ npm run server
 ## 🚀 Features
 
 - 🔎 Browse and search books
-- ❤️ Save liked books (user-specific)
+- ❤️ Save liked books
 - 🌗 Toggle between Dark and Light themes
 - 🔐 Simple login system
 
