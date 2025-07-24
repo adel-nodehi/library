@@ -6,3 +6,6 @@
 2. write "npm install" command and press Enter, wait till installation finished.
 3. write "npm run server" command and press Enter.
 4. open another terminal and write "npm server" command and press Enter.
+
+see live version: [MakTab library](https://library-ashen-nine.vercel.app/)
+
